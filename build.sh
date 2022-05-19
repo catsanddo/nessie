@@ -17,7 +17,7 @@ while getopts ":rch" option; do
             should_run=yes
             ;;
         c)
-            rm -rf build
+            rm -rf bin
             exit 0
             ;;
         *)
@@ -25,11 +25,11 @@ while getopts ":rch" option; do
     esac
 done
 
-mkdir -p build
-odin build src -out:build/nessie
+mkdir -p bin
+odin build src -out:bin/nessie
 
 if [[ $? -eq 0 ]] && [[ -n $should_run ]]; then
-    build/nessie
-else
-    exit 1
+    bin/nessie
 fi
+
+exit $?
